@@ -1,0 +1,21 @@
+fish_color_autosuggestion '555'  'brblack'
+fish_color_cancel -r
+fish_color_command FFAFD7
+fish_color_comment 9E9E9E
+fish_color_cwd FF875F
+fish_color_cwd_root red
+fish_color_end 00D700
+fish_color_error FF0000
+fish_color_escape 00a6b2
+fish_color_history_current --bold
+fish_color_host normal
+fish_color_match yellow
+fish_color_normal normal
+fish_color_operator ffff00
+fish_color_param 00D7D7
+fish_color_quote FF5F00
+fish_color_redirection AFFF00
+fish_color_search_match 'bryellow'  '--background=brblack'
+fish_color_selection 'white'  '--bold'  '--background=brblack'
+fish_color_user brgreen
+fish_color_valid_path --underline
