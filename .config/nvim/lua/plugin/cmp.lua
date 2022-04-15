@@ -191,8 +191,10 @@ local setup = function()
                 require('luasnip').lsp_expand(args.body)
             end,
         },
-        documentation = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        window = {
+            documentation = {
+                border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+            },
         },
         mapping = {
             ["<C-p>"] = cmp.mapping.select_prev_item(),
