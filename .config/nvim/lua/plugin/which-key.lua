@@ -170,6 +170,7 @@ local mappings = {
             "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
             "LSP Workspace Symbols",
         },
+        b = { "<cmd>Telescope buffers<cr>", "Find" },
     },
     T = {
         name = "Trouble",
@@ -185,6 +186,7 @@ local mappings = {
         name = "Toggle",
         c = { "<cmd>lua require'functions'.toggle_completion()<cr>", "Completion" },
         t = { "<cmd>lua require'functions'.float_edit(\"~/.todo.md\")<cr>", "TODO tasks" },
+        s = { "<cmd>lua require'functions'.toggle_spell()<cr>", "Spelling" },
     },
     -- ["<Space>"] = {
     h = {

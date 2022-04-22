@@ -55,6 +55,9 @@ require('packer').startup({
             "lukas-reineke/onedark.nvim",
         }
         use {
+            "franbach/miramare",
+        }
+        use {
             'idmitryd/gruvqueen',
             config = function()
                 local c = require("gruvqueen/palette").get_dark_theme_palette().common
@@ -290,7 +293,7 @@ require('packer').startup({
         -- }}}3
         -- {{{3 Tree-sitter
         use 'nvim-treesitter/nvim-treesitter-textobjects'
-        use 'romgrk/nvim-treesitter-context'
+        use 'lewis6991/nvim-treesitter-context'
         use {
             'nvim-treesitter/nvim-treesitter',
             run = ':TSUpdate',
@@ -477,7 +480,9 @@ require('packer').startup({
             "ur4ltz/surround.nvim",
             config = function()
                 -- require('surround').setup{load_keymaps=false}
-                require('surround').setup{}
+                require('surround').setup{
+                prefix = "S",
+            }
                 -- It is needed to use 's' character in select mode that snippets use
                 -- vim.cmd('sunmap s')
             end,
@@ -728,10 +733,11 @@ map('n', '<C-l>', '<C-w>l', options)
 map('n', '<C-h>', '<C-w>h', options)
 map('n', '<C-j>', '<C-w>j', options)
 map('n', '<C-k>', '<C-w>k', options)
+map('n', 's', '<cmd>HopChar2<cr>', options)
+map('n', '<A-h>', '5zh', options)
+map('n', '<A-l>', '5zl', options)
 -- }}}2
 -- {{{2 insert mode maps
-map('i', 'kj', '<Esc>', options)
-map('i', 'jk', '<Esc>', options)
 map('i', '<F3>', '<C-^>', options)
 -- }}}2
 -- {{{2 command-line mode maps

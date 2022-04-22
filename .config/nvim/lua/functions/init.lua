@@ -92,4 +92,8 @@ functions.float_edit = function(file)
     vim.cmd("noremap <buffer> q :w<CR>:bd<CR>")
 end
 
+functions.toggle_spell = function()
+    vim.o.spell = not vim.o.spell -- initialize
+end
+
 return functions
