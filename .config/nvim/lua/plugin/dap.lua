@@ -40,23 +40,25 @@ local setup = function()
             remove = "d",
             edit = "e",
         },
-        sidebar = {
-            elements = {
-                -- You can change the order of elements in the sidebar
-                "scopes",
-                "breakpoints",
-                "stacks",
-                "watches"
+        layouts = {
+            {
+                elements = {
+                    -- You can change the order of elements in the sidebar
+                    "scopes",
+                    "breakpoints",
+                    "stacks",
+                    "watches"
+                },
+                size = 40,
+                position = "left" -- Can be "left" or "right"
             },
-            size = 40,
-            position = "left" -- Can be "left" or "right"
-        },
-        tray = {
-            elements = {
-                "repl"
+            {
+                elements = {
+                    "repl"
+                },
+                size = 10,
+                position = "bottom" -- Can be "bottom" or "top"
             },
-            size = 10,
-            position = "bottom" -- Can be "bottom" or "top"
         },
         floating = {
             max_height = nil, -- These can be integers or a float between 0 and 1.

@@ -681,7 +681,7 @@ g.maplocalleader = '\\'
 -- }}}2
 -- {{{2 options and variables
 -- global options and variables
-g.nvim_tree_respect_buf_cwd = 1
+-- g.nvim_tree_respect_buf_cwd = 1
 g.cursorhold_updatetime = 300
 g.bufferline = {
     closable = false,

@@ -1,12 +1,11 @@
+-- unknown option: setup | unknown option: allow_resize | unknown option: auto_ignore_ft | see :help nvim-tree-setup for available configuration options
 local config = {
     setup = {
         open_on_setup = false,
-        auto_close = true,
         open_on_tab = false,
-        -- update_cwd = true,
+        respect_buf_cwd = true,
         update_focused_file = {
             enable = true,
-            -- update_cwd = true,
         },
         diagnostics = {
             enable = true,
@@ -20,7 +19,6 @@ local config = {
         view = {
             width = 30,
             side = "left",
-            auto_resize = true,
             mappings = {
                 custom_only = false,
             },
@@ -31,40 +29,43 @@ local config = {
         },
         actions = {
             open_file = {
+                resize_window = true,
                 quit_on_open = false,
             }
         },
-    },
-    show_icons = {
-        git = 1,
-        folders = 1,
-        files = 1,
-        folder_arrows = 1,
-        tree_width = 30,
-    },
-    git_hl = 1,
-    root_folder_modifier = ":t",
-    allow_resize = 1,
-    auto_ignore_ft = { "startify", "dashboard" },
-    icons = {
-        default = "",
-        symlink = "",
-        git = {
-            unstaged = "",
-            staged = "S",
-            unmerged = "",
-            renamed = "➜",
-            deleted = "",
-            untracked = "U",
-            ignored = "◌",
+        renderer = {
+            root_folder_modifier = ":t",
+            highlight_git = true,
+            icons = {
+                show = {
+                    git = true,
+                    folder = true,
+                    file = true,
+                    folder_arrow = true,
+                },
+                glyphs = {
+                    default = "",
+                    symlink = "",
+                    git = {
+                        unstaged = "",
+                        staged = "S",
+                        unmerged = "",
+                        renamed = "➜",
+                        deleted = "",
+                        untracked = "U",
+                        ignored = "◌",
+                    },
+                    folder = {
+                        default = "",
+                        open = "",
+                        empty = "",
+                        empty_open = "",
+                        symlink = "",
+                    },
+                },
+            },
         },
-        folder = {
-            default = "",
-            open = "",
-            empty = "",
-            empty_open = "",
-            symlink = "",
-        },
+        ignore_ft_on_setup = { "startify", "dashboard" },
     },
 }
 
@@ -115,7 +116,7 @@ local setup = function()
 
     vim.cmd "au WinClosed * lua require('plugin.nvimtree').on_close()"
 
-    require("nvim-tree").setup(config)
+    require("nvim-tree").setup(config.setup)
 end
 
 return {
