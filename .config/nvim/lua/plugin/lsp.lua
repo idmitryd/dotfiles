@@ -28,7 +28,7 @@ local setup = function()
         buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
         buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
-        if client.resolved_capabilities.document_highlight then
+        if client.server_capabilities.document_highlight then
             vim.api.nvim_exec(
             [[
             augroup lsp_document_highlight
@@ -55,7 +55,7 @@ local setup = function()
 
                 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
                 if status_ok then
-                    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+                    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
                 end
 
                 return {
