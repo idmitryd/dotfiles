@@ -1,7 +1,6 @@
 -- unknown option: setup | unknown option: allow_resize | unknown option: auto_ignore_ft | see :help nvim-tree-setup for available configuration options
 local config = {
     setup = {
-        open_on_setup = false,
         open_on_tab = false,
         respect_buf_cwd = true,
         update_focused_file = {
@@ -65,21 +64,20 @@ local config = {
                 },
             },
         },
-        ignore_ft_on_setup = { "startify", "dashboard" },
     },
 }
 
 local on_open = function()
     if package.loaded["bufferline.state"] and config.setup.view.side == "left" then
-        require("bufferline.state").set_offset(config.setup.view.width + 1, "")
+        require("bufferline.api").set_offset(config.setup.view.width + 1, "")
     end
 end
 
 local on_close = function()
     local buf = tonumber(vim.fn.expand "<abuf>")
     local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-    if ft == "NvimTree" and package.loaded["bufferline.state"] then
-        require("bufferline.state").set_offset(0)
+    if ft == "NvimTree" and package.loaded["bufferline.api"] then
+        require("bufferline.api").set_offset(0)
     end
 end
 

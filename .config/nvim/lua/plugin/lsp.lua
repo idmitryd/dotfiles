@@ -1,6 +1,6 @@
 local run = function()
     local servers_to_install = { 'clangd', 'pyright', 'cmake',
-    'texlab', 'sumneko_lua', 'vimls' }
+    'texlab', 'lua_ls', 'vimls' }
     local lsp_installer = require'nvim-lsp-installer'
     for _, server_name in pairs(servers_to_install) do
         local ok, server = lsp_installer.get_server(server_name)
@@ -90,7 +90,7 @@ local setup = function()
                     -- -- table.insert(config.cmd, "--fallback-style='{ BasedOnStyle: Google, IndentWidth: 10 }'")
                     -- table.insert(config.cmd, "--background-index")
                 end
-                if server.name == 'sumneko_lua' then
+                if server.name == 'lus_ls' then
                     config.settings = {
                         Lua = {
                             diagnostics = {
