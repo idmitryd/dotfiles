@@ -143,6 +143,22 @@ require('packer').startup({
             'romgrk/barbar.nvim',
             requires = 'kyazdani42/nvim-web-devicons',
             event = "BufWinEnter",
+            config = function()
+                require('barbar').setup{
+                    clickable = false,
+                    letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
+                    icons = {
+                        pinned = {
+                            button = '車',
+                        },
+                        separator = {
+                            left = '▌',
+                        },
+                    },
+                    -- icon_separator_inactive = '▌',
+                    -- icon_close_tab_modified = '●',
+                }
+            end,
         }
         -- }}}3
         -- {{{3 Which-key
@@ -219,39 +235,6 @@ require('packer').startup({
                 vim.api.nvim_command('autocmd FileType dashboard setlocal nocursorline noswapfile synmaxcol& signcolumn=no norelativenumber nocursorcolumn nospell  nolist  nonumber bufhidden=wipe colorcolumn= foldcolumn=0 matchpairs= ')
                 vim.api.nvim_command('autocmd FileType dashboard nnoremap <silent> <buffer> q :q<CR>')
             end,
-        }
-        -- }}}3
-        -- {{{3 Neorg
-        use {
-            'nvim-neorg/neorg',
-            config = function()
-                require('neorg').setup {
-                    -- Tell Neorg what modules to load
-                    load = {
-                        -- Load all the default modules
-                        ["core.defaults"] = {},
-                        -- Configure core.keybinds
-                        ["core.keybinds"] = {
-                            config = {
-                                default_keybinds = true, -- Generate the default keybinds
-                                neorg_leader = "<Leader>o" -- This is the default if unspecified
-                            }
-                        },
-                        -- Allows for use of icons
-                        ["core.norg.concealer"] = {},
-                        -- Manage your directories with Neorg
-                        ["core.norg.dirman"] = {
-                            config = {
-                                workspaces = {
-                                    my_workspace = "~/neorg"
-                                }
-                            }
-                        },
-                        ["core.integrations.telescope"] = {},
-                    },
-                }
-            end,
-            requires = { 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' }
         }
         -- }}}3
         -- {{{3 nvim-cmp
@@ -356,7 +339,7 @@ require('packer').startup({
                 require('telescope').load_extension('fzf')
                 require('telescope').load_extension('project')
                 require('telescope').load_extension('projects')
-                require("telescope").load_extension('notify')
+                -- require("telescope").load_extension('notify')
             end,
         }
         -- }}}3
@@ -463,17 +446,17 @@ require('packer').startup({
         }
         -- }}}3
         -- {{{ File explorer
-        use {
-            'kyazdani42/nvim-tree.lua',
-            requires = {
-                'ryanoasis/vim-devicons',
-                'kyazdani42/nvim-web-devicons',
-            },
-            config = function()
-                -- lua/plugin/nvimtree
-                require "plugin.nvimtree".setup()
-            end,
-        }
+        -- use {
+        --     'kyazdani42/nvim-tree.lua',
+        --     requires = {
+        --         'ryanoasis/vim-devicons',
+        --         'kyazdani42/nvim-web-devicons',
+        --     },
+        --     config = function()
+        --         -- lua/plugin/nvimtree
+        --         require "plugin.nvimtree".setup()
+        --     end,
+        -- }
         -- }}}3
         -- {{{3 Surrounding
         use {
@@ -592,38 +575,38 @@ require('packer').startup({
         }
         --- }}}
         -- {{{3 Notify
-        use {
-            "rcarriga/nvim-notify",
-            config = function()
-                local notify = require("notify")
-                notify.setup({
-                    -- Animation style (see below for details)
-                    stages = "fade_in_slide_out",
-                    -- Function called when a new window is opened, use for changing win settings/config
-                    on_open = nil,
-                    -- Function called when a window is closed
-                    on_close = nil,
-                    -- Render function for notifications. See notify-render()
-                    render = "default",
-                    -- Default timeout for notifications
-                    timeout = 5000,
-                    -- For stages that change opacity this is treated as the highlight behind the window
-                    -- Set this to either a highlight group or an RGB hex value e.g. "#000000"
-                    background_colour = "#282828",
-                    -- Minimum width for notification windows
-                    minimum_width = 50,
-                    -- Icons for the different levels
-                    icons = {
-                        ERROR = "",
-                        WARN = "",
-                        INFO = "",
-                        DEBUG = "",
-                        TRACE = "✎",
-                    },
-                })
-                vim.notify = notify
-            end,
-        }
+        -- use {
+        --     "rcarriga/nvim-notify",
+        --     config = function()
+        --         local notify = require("notify")
+        --         notify.setup({
+        --             -- Animation style (see below for details)
+        --             stages = "fade_in_slide_out",
+        --             -- Function called when a new window is opened, use for changing win settings/config
+        --             on_open = nil,
+        --             -- Function called when a window is closed
+        --             on_close = nil,
+        --             -- Render function for notifications. See notify-render()
+        --             render = "default",
+        --             -- Default timeout for notifications
+        --             timeout = 5000,
+        --             -- For stages that change opacity this is treated as the highlight behind the window
+        --             -- Set this to either a highlight group or an RGB hex value e.g. "#000000"
+        --             background_colour = "#282828",
+        --             -- Minimum width for notification windows
+        --             minimum_width = 50,
+        --             -- Icons for the different levels
+        --             icons = {
+        --                 ERROR = "",
+        --                 WARN = "",
+        --                 INFO = "",
+        --                 DEBUG = "",
+        --                 TRACE = "✎",
+        --             },
+        --         })
+        --         vim.notify = notify
+        --     end,
+        -- }
         -- }}}
         -- {{{3 UI helpers
         use {
@@ -683,15 +666,6 @@ g.maplocalleader = '\\'
 -- global options and variables
 -- g.nvim_tree_respect_buf_cwd = 1
 g.cursorhold_updatetime = 300
-g.bufferline = {
-    closable = false,
-    clickable = false,
-    letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
-    icon_separator_active = '▌',
-    icon_pinned = '車',
-    -- icon_separator_inactive = '▌',
-    -- icon_close_tab_modified = '●',
-}
 
 o.cmdheight = 2
 o.showtabline = 2
