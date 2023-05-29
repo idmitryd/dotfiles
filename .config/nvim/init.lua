@@ -148,6 +148,7 @@ require('packer').startup({
                     clickable = false,
                     letters = 'asdfjkl;ghnmxcvbziowerutyqpASDFJKLGHNMXCVBZIOWERUTYQP',
                     icons = {
+                        button = '',
                         pinned = {
                             button = '車',
                         },
