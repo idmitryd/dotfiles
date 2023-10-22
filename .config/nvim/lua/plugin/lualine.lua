@@ -24,7 +24,7 @@ local setup = function()
     require('lualine').setup{
         options = {
             icons_enabled=true,
-            theme='gruvqueen-medium',
+            theme='kanagawa',
             section_separators='',
             -- component_separators='',
             component_separators = '',

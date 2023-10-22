@@ -1,18 +1,8 @@
-local run = function()
+local setup = function()
     local servers_to_install = { 'clangd', 'pyright', 'cmake',
     'texlab', 'lua_ls', 'vimls' }
-    local lsp_installer = require'nvim-lsp-installer'
-    for _, server_name in pairs(servers_to_install) do
-        local ok, server = lsp_installer.get_server(server_name)
-        if ok then
-            server:install()
-        else
-            print('Cannot find server ' .. server_name)
-        end
-    end
-end
 
-local setup = function()
+    require("mason").setup()
     local nvim_lsp = require('lspconfig')
 
     -- Use an on_attach function to only map the following keys
@@ -68,8 +58,8 @@ local setup = function()
                 }
             end
 
-            local lsp_installer = require("nvim-lsp-installer")
-            lsp_installer.settings({
+            local lsp_installer = require("mason-lspconfig")
+            lsp_installer.setup({
                 ui = {
                     icons = {
                         server_installed = "✓",
@@ -81,7 +71,7 @@ local setup = function()
 
             for _, server in pairs(lsp_installer.get_installed_servers()) do
                 local config = make_config()
-                if server.name == 'clangd' then
+                if server == 'clangd' then
                     config.filetypes = { 'c', 'cpp', }
                     config.cmd = {"clangd-12"}
                     -- config.cmd = server:get_default_options().cmd
@@ -90,7 +80,7 @@ local setup = function()
                     -- -- table.insert(config.cmd, "--fallback-style='{ BasedOnStyle: Google, IndentWidth: 10 }'")
                     -- table.insert(config.cmd, "--background-index")
                 end
-                if server.name == 'lus_ls' then
+                if server == 'lua_ls' then
                     config.settings = {
                         Lua = {
                             diagnostics = {
@@ -99,7 +89,7 @@ local setup = function()
                         },
                     }
                 end
-                server:setup(config)
+                nvim_lsp[server].setup(config)
             end
 
             -- local signs = { Error = "ⓧ ", Warn = "⚠ ", Hint = " ", Info = " " }
@@ -119,5 +109,4 @@ local setup = function()
 
         return {
             setup = setup,
-            run = run
         }

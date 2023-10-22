@@ -14,6 +14,7 @@ local setup = function()
                            'cmake', 'bibtex', 'yaml', 'lua', 'norg' },
         highlight = {
             enable = true,
+            additional_vim_regex_highlighting = false,
         },
         incremental_selection = {
             enable = true,
@@ -30,14 +31,7 @@ local setup = function()
         },
     }
     require('nvim-treesitter-textobjects')
-    require'treesitter-context'.setup({
-    })
-    -- vim.api.nvim_exec([[
-    --     set foldmethod=expr
-    --     set foldexpr=nvim_treesitter#foldexpr()
-    --     set foldminlines=5
-    --     set foldnestmax=3
-    -- ]], true)
+    require('treesitter-context').setup()
 end
 return {
     setup = setup,
