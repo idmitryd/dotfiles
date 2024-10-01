@@ -2,14 +2,14 @@
 -- {{{2 Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -24,6 +24,18 @@ vim.g.maplocalleader = '\\'
 --- }}}2
 -- {{{2 Plugins load and setup
 require('lazy').setup({
+    {
+        'ivanesmantovich/xkbswitch.nvim',
+        config = function() require('xkbswitch').setup() end,
+    },
+    -- {
+    --     'Wansmer/langmapper.nvim',
+    --     lazy = false,
+    --     priority = 1, -- High priority is needed if you will use `autoremap()`
+    --     config = function()
+    --         require('langmapper').setup({--[[ your config ]]})
+    --     end,
+    -- },
     -- {{{3 Colorschemes
     {
         "rebelot/kanagawa.nvim",
@@ -394,7 +406,7 @@ require('lazy').setup({
                         {
                             'ntpeters/vim-better-whitespace',
                             config = function()
-                                vim.g.strip_whitespace_on_save = 1
+                                vim.g.strip_whitespace_on_save = 0
                                 vim.g.better_whitespace_filetypes_blacklist = { 'diff', 'git', 'gitcommit', 'unite',
                                 'qf', 'help', 'markdown', 'fugitive', 'dashboard', 'terminal' }
                             end,
@@ -572,6 +584,8 @@ require('lazy').setup({
                                         -- global options and variables
                                         -- g.nvim_tree_respect_buf_cwd = 1
                                         g.cursorhold_updatetime = 300
+                                        g.XkbSwitchEnabled = 1
+                                        g.XkbSwitchLib = '/usr/local/lib64/libg3kbswitch.so'
 
                                         o.cmdheight = 2
                                         o.showtabline = 2
@@ -619,6 +633,7 @@ require('lazy').setup({
                                         -- }}}2
                                         -- {{{2 insert mode maps
                                         map('i', '<F3>', '<C-^>', options)
+                                        map('i', '<C-х>', '<Esc>', options)
                                         -- }}}2
                                         -- {{{2 command-line mode maps
                                         map('c', '<F3>', '<C-^>', options)
@@ -627,7 +642,25 @@ require('lazy').setup({
                                         -- }}}2
                                         -- {{{2 terminal mode map
                                         map('t', '<Esc>', '<C-\\><C-n>', options)
+
+                                        -- local function escape(str)
+                                        --     -- You need to escape these characters to work correctly
+                                        --     local escape_chars = [[;,."|\]]
+                                        --     return vim.fn.escape(str, escape_chars)
+                                        -- end
+
+                                        -- -- Recommended to use lua template string
+                                        -- local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
+                                        -- local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+                                        -- local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
+                                        -- local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
+
+                                        -- vim.opt.langmap = vim.fn.join({
+                                        --     -- | `to` should be first     | `from` should be second
+                                        --     escape(ru_shift) .. ';' .. escape(en_shift),
+                                        --     escape(ru) .. ';' .. escape(en),
+                                        -- }, ',')
                                         -- }}}2
                                         -- }}}
 
--- vim: foldmethod=marker
+                                        -- vim: foldmethod=marker
