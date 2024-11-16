@@ -24,10 +24,10 @@ vim.g.maplocalleader = '\\'
 --- }}}2
 -- {{{2 Plugins load and setup
 require('lazy').setup({
-    {
-        'ivanesmantovich/xkbswitch.nvim',
-        config = function() require('xkbswitch').setup() end,
-    },
+    -- {
+    --     'ivanesmantovich/xkbswitch.nvim',
+    --     config = function() require('xkbswitch').setup() end,
+    -- },
     -- {
     --     'Wansmer/langmapper.nvim',
     --     lazy = false,
@@ -79,6 +79,7 @@ require('lazy').setup({
     -- {{{3 Which-key
     {
         'folke/which-key.nvim',
+        dependencies = 'echasnovski/mini.icons',
         event = 'BufWinEnter',
         config = function()
             -- lua/plugin/which-key
@@ -196,7 +197,7 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
-            'lewis6991/nvim-treesitter-context',
+            -- 'lewis6991/nvim-treesitter-context',
         },
         build = ':TSUpdate',
         config = function()
@@ -224,7 +225,7 @@ require('lazy').setup({
     -- {{{3 Debug
     {
         'mfussenegger/nvim-dap',
-        dependencies = { 'rcarriga/nvim-dap-ui', 'Pocco81/DAPInstall.nvim'},
+        dependencies = { 'rcarriga/nvim-dap-ui', 'Pocco81/DAPInstall.nvim', 'nvim-neotest/nvim-nio'},
         -- ft = 'cpp',
         config = function()
             -- lua/plugin/dap
@@ -443,34 +444,34 @@ require('lazy').setup({
                                 require('gitsigns').setup({
                                     signs = {
                                         add = {
-                                            hl = "GitSignsAdd",
+                                            -- hl = "GitSignsAdd",
                                             text = "▎",
-                                            numhl = "GitSignsAddNr",
-                                            linehl = "GitSignsAddLn",
+                                            -- numhl = "GitSignsAddNr",
+                                            -- linehl = "GitSignsAddLn",
                                         },
                                         change = {
-                                            hl = "GitSignsChange",
+                                            -- hl = "GitSignsChange",
                                             text = "▎",
-                                            numhl = "GitSignsChangeNr",
-                                            linehl = "GitSignsChangeLn",
+                                            -- numhl = "GitSignsChangeNr",
+                                            -- linehl = "GitSignsChangeLn",
                                         },
                                         delete = {
-                                            hl = "GitSignsDelete",
+                                            -- hl = "GitSignsDelete",
                                             text = "契",
-                                            numhl = "GitSignsDeleteNr",
-                                            linehl = "GitSignsDeleteLn",
+                                            -- numhl = "GitSignsDeleteNr",
+                                            -- linehl = "GitSignsDeleteLn",
                                         },
                                         topdelete = {
-                                            hl = "GitSignsDelete",
+                                            -- hl = "GitSignsDelete",
                                             text = "契",
-                                            numhl = "GitSignsDeleteNr",
-                                            linehl = "GitSignsDeleteLn",
+                                            -- numhl = "GitSignsDeleteNr",
+                                            -- linehl = "GitSignsDeleteLn",
                                         },
                                         changedelete = {
-                                            hl = "GitSignsChange",
+                                            -- hl = "GitSignsChange",
                                             text = "▎",
-                                            numhl = "GitSignsChangeNr",
-                                            linehl = "GitSignsChangeLn",
+                                            -- numhl = "GitSignsChangeNr",
+                                            -- linehl = "GitSignsChangeLn",
                                         },
                                     },
                                     numhl = false,

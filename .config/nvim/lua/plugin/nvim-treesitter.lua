@@ -31,7 +31,7 @@ local setup = function()
         },
     }
     require('nvim-treesitter-textobjects')
-    require('treesitter-context').setup()
+    -- require('treesitter-context').setup()
 end
 return {
     setup = setup,

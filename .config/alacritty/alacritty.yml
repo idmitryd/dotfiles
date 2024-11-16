@@ -1,12 +1,12 @@
 font:
   normal:
     family: JetBrainsMonoMedium Nerd Font
-  size: 9
+  size: 20
 
 window:
    dimensions:
-     columns: 123
-     lines: 35
+     columns: 230
+     lines: 70
 
 env:
   TERM: xterm-256color
