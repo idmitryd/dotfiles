@@ -183,9 +183,13 @@ require('lazy').setup({
         config = function() require('plugin.lsp').setup() end,
     },
     {
-        "tami5/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         config = function()
-            require('lspsaga').setup()
+            require('lspsaga').setup({
+                symbol_in_winbar = {
+                    enable = false,
+                },
+            })
             local options = { noremap = true }
             vim.api.nvim_set_keymap('n', '<C-d>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>", options)
             vim.api.nvim_set_keymap('n', '<C-u>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>", options)
@@ -588,7 +592,7 @@ require('lazy').setup({
                                         g.XkbSwitchEnabled = 1
                                         g.XkbSwitchLib = '/usr/local/lib64/libg3kbswitch.so'
 
-                                        o.cmdheight = 2
+                                        o.cmdheight = 1
                                         o.showtabline = 2
                                         o.hidden = true
                                         o.timeoutlen = 300
